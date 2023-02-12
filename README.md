@@ -21,13 +21,15 @@ Monorepo created using nx tool.
 
 Rest of the structure is basic nx integrated repo structure (Learn more [here](https://nx.dev/getting-started/integrated-repo-tutorial)
 # How to Run
+
 ## Requirements
 Project requires:
--- [node@16.13.0](https://nodejs.org/download/release/v16.1.0/)
--- [python@3.10](https://www.python.org/downloads/release/python-3100/)
--- [pipenv](https://pipenv.pypa.io/en/latest/install/#installing-pipenv)
+- [node@16.13.0](https://nodejs.org/download/release/v16.1.0/)
+- [python@3.10](https://www.python.org/downloads/release/python-3100/)
+- [pipenv](https://pipenv.pypa.io/en/latest/install/#installing-pipenv)
 
 These three need to be already installed on the working machine
+
 ## Initial Setup
 Install all packages:
 
@@ -37,12 +39,12 @@ Install all packages:
 
 # Run Django Command
 Basic commands of Django can be run directly from root directory
--- runserver
--- makemigrations
--- migrate
--- collectstatic
--- startapp
--- startproject
+- runserver
+- makemigrations
+- migrate
+- collectstatic
+- startapp
+- startproject
 
 Syntax:
 
@@ -50,8 +52,8 @@ Syntax:
 
 Example Codes
 
---     `yarn django runserver`
--- `yarn djagno startapp myapp`
+- `yarn django runserver`
+- `yarn djagno startapp myapp`
 
 # Run Pipenv Command
 All pipenv commands can be run directly from root directory
@@ -62,6 +64,6 @@ Syntax
 
 Example
 
--- `yarn pipenv --venv`
--- `yarn pipenv lock --pre`
--- `yarn pipenv install requests`
+- `yarn pipenv --venv`
+- `yarn pipenv lock --pre`
+- `yarn pipenv install requests`
