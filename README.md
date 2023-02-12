@@ -2,12 +2,12 @@
 
 ## Table of Content
 - [Introduction](#Introduction)
-- [Project Structure](#Project\ Structure)
-- [How to Run](#How\ to\ run)
--- [Requirements](##Requirements)
--- [Initial Setup](##Initial\ Setup)
-- [Run Django Command](##Run\ Django\ Command)
-- [Run Pipenv Command](##Run\ Pipenv\ Command)
+- [Project Structure](#Project-Structure)
+- [How to Run](#How-to-run)
+    - [Requirements](##Requirements)
+    - [Initial Setup](##Initial-Setup)
+- [Run Django Command](##Run-Django-Command)
+- [Run Pipenv Command](##Run-Pipenv-Command)
 
 # Introduction
 Athena Vision aims to make cyber world of Twitter a little better. It provides ability to blur out hateful tweets, as well as perfoms multilingual sentiment analysis and topic analysis
