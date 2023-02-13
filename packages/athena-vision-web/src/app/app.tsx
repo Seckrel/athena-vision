@@ -1,14 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.scss';
+import './app.module.scss';
 import { HomeView } from './home-view/home-view';
 
 export function App() {
-  return (
-    <>
-      <HomeView />
-      <div />
-    </>
-  );
+  return <HomeView />;
 }
 
 export default App;
