@@ -22,9 +22,43 @@ export function HomeView(props: HomeViewProps) {
           styles['full-screen']
         )}
       >
-        <button className={clsx(styles['enable-btn'], 'Typography-1')}>
+        {/* <button className={clsx(styles['enable-btn'], 'Typography-1')}>
           Enable
-        </button>
+        </button> */}
+
+        {/* <div className={styles['power-btn-container']}> */}
+        <div className={styles['power-switch']}>
+          <input type="checkbox" />
+          <div className={styles['button']}>
+            <svg className={styles['power-off']}>
+              <use xlinkHref="#line" className={styles['line']} />
+              <use xlinkHref="#circle" className={styles['circle']} />
+            </svg>
+            <svg className={styles['power-on']}>
+              <use xlinkHref="#line" className={styles['line']} />
+              <use xlinkHref="#circle" className={styles['line']} />
+            </svg>
+          </div>
+        </div>
+
+        {/* <!-- SVG --> */}
+        <svg xmlns="http://www.w3.org/2000/svg" style={{ display: 'none' }}>
+          <symbol
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 150 150"
+            id="line"
+          >
+            <line x1="75" y1="34" x2="75" y2="58" />
+          </symbol>
+          <symbol
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 150 150"
+            id="circle"
+          >
+            <circle cx="75" cy="80" r="35" />
+          </symbol>
+        </svg>
+        {/* </div> */}
 
         {/* Adjust Form */}
         <form>
