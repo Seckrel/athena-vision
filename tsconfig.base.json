@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@athena-vision/shared/typedefs": ["libs/shared/typedefs/src/index.ts"],
       "@athena-vision/shared/ui": ["libs/shared/ui/src/index.ts"]
     },
     "resolveJsonModule": true
