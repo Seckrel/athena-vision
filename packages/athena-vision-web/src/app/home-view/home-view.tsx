@@ -26,18 +26,19 @@ export function HomeView(props: HomeViewProps) {
           Enable
         </button> */}
 
-        {/* <div className={styles['power-btn-container']}> */}
-        <div className={styles['power-switch']}>
-          <input type="checkbox" />
-          <div className={styles['button']}>
-            <svg className={styles['power-off']}>
-              <use xlinkHref="#line" className={styles['line']} />
-              <use xlinkHref="#circle" className={styles['circle']} />
-            </svg>
-            <svg className={styles['power-on']}>
-              <use xlinkHref="#line" className={styles['line']} />
-              <use xlinkHref="#circle" className={styles['line']} />
-            </svg>
+        <div className={styles['power-btn-container']}>
+          <div className={styles['power-switch']}>
+            <input type="checkbox" />
+            <div className={styles['button']}>
+              <svg className={styles['power-off']}>
+                <use xlinkHref="#line" className={styles['line']} />
+                <use xlinkHref="#circle" className={styles['circle']} />
+              </svg>
+              <svg className={styles['power-on']}>
+                <use xlinkHref="#line" className={styles['line']} />
+                <use xlinkHref="#circle" className={styles['line']} />
+              </svg>
+            </div>
           </div>
         </div>
 

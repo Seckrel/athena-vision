@@ -21,9 +21,6 @@ $strength-slider-height: 8px;
 .full-screen {
     width: 100%;
     height: 100%;
-
-    // to remove
-    background: #1B1A23;
 }
 
 .enable-btn {
@@ -33,171 +30,171 @@ $strength-slider-height: 8px;
     border-radius: 50%;
 }
 
-// .power-btn-container {
-// background: black;
+.power-btn-container {
+    background: black;
 
-.power-switch {
-    --color-invert: #ffffff;
-    --width: 150px;
-    --height: 150px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: var(--width);
-    height: var(--height);
-
-    .button {
-        width: 100%;
-        height: 100%;
+    .power-switch {
+        $color-invert: #ffffff;
+        $width: 150px;
+        $height: 150px;
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
-        position: relative;
+        width: $width;
+        height: $height;
 
-        &:after {
-            content: "";
+        .button {
             width: 100%;
             height: 100%;
-            position: absolute;
-            background: radial-gradient(circle closest-side, var(--color-invert), transparent);
-            filter: blur(20px);
-            opacity: 0;
-            transition: opacity 1s ease, transform 1s ease;
-            transform: perspective(1px) translateZ(0);
-            backface-visibility: hidden;
-        }
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
 
-        .power-on,
-        .power-off {
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            z-index: 1;
-            fill: none;
-            stroke: var(--color-invert);
-            stroke-width: 8px;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-
-            .line {
-                opacity: .2;
-            }
-
-            .circle {
-                opacity: .2;
-                transform: rotate(-58deg);
-                transform-origin: center 80px;
-                stroke-dasharray: 220;
-                stroke-dashoffset: 40;
-            }
-        }
-
-        .power-on {
-            filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, .8));
-
-            .line {
+            &:after {
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background: radial-gradient(circle closest-side, $color-invert, transparent);
+                filter: blur(20px);
                 opacity: 0;
-                transition: opacity .3s ease 1s;
+                transition: opacity 1s ease, transform 1s ease;
+                transform: perspective(1px) translateZ(0);
+                backface-visibility: hidden;
             }
 
-            .circle {
-                opacity: 1;
-                stroke-dashoffset: 220;
-                transition: transform 0s ease, stroke-dashoffset 1s ease 0s;
+            .power-on,
+            .power-off {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                z-index: 1;
+                fill: none;
+                stroke: $color-invert;
+                stroke-width: 8px;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+
+                .line {
+                    opacity: .2;
+                }
+
+                .circle {
+                    opacity: .2;
+                    transform: rotate(-58deg);
+                    transform-origin: center 80px;
+                    stroke-dasharray: 220;
+                    stroke-dashoffset: 40;
+                }
+            }
+
+            .power-on {
+                filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, .8));
+
+                .line {
+                    opacity: 0;
+                    transition: opacity .3s ease 1s;
+                }
+
+                .circle {
+                    opacity: 1;
+                    stroke-dashoffset: 220;
+                    transition: transform 0s ease, stroke-dashoffset 1s ease 0s;
+                }
+            }
+        }
+
+        input {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            z-index: 2;
+            cursor: pointer;
+            opacity: 0;
+
+            &:checked {
+                ~.button {
+                    &:after {
+                        opacity: 0.15;
+                        transform: scale(2) perspective(1px) translateZ(0);
+                        backface-visibility: hidden;
+                        transition: opacity .5s ease, transform .5s ease;
+                    }
+
+                    .power-on,
+                    .power-off {
+                        animation: clickAnimation .3s ease forwards;
+                        transform: scale(1);
+
+                        .line {
+                            animation: lineAnimation .8s ease-in forwards;
+                        }
+
+                        .circle {
+                            transform: rotate(302deg);
+                        }
+                    }
+
+                    .power-on {
+                        .line {
+                            opacity: 1;
+                            transition: opacity .05s ease-in .55s;
+                        }
+
+                        .circle {
+                            transform: rotate(302deg);
+                            stroke-dashoffset: 40;
+                            transition: transform .4s ease .2s, stroke-dashoffset .4s ease .2s;
+                        }
+                    }
+                }
             }
         }
     }
 
-    input {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        z-index: 2;
-        cursor: pointer;
-        opacity: 0;
+    @keyframes lineAnimation {
+        0% {
+            transform: translateY(0);
+        }
 
-        &:checked {
-            +.button {
-                &:after {
-                    opacity: 0.15;
-                    transform: scale(2) perspective(1px) translateZ(0);
-                    backface-visibility: hidden;
-                    transition: opacity .5s ease, transform .5s ease;
-                }
+        10% {
+            transform: translateY(10px);
+        }
 
-                .power-on,
-                .power-off {
-                    animation: clickAnimation .3s ease forwards;
-                    transform: scale(1);
+        40% {
+            transform: translateY(-25px);
+        }
 
-                    .line {
-                        animation: lineAnimation .8s ease-in forwards;
-                    }
+        60% {
+            transform: translateY(-25px);
+        }
 
-                    .circle {
-                        transform: rotate(302deg);
-                    }
-                }
+        85% {
+            transform: translateY(10px);
+        }
 
-                .power-on {
-                    .line {
-                        opacity: 1;
-                        transition: opacity .05s ease-in .55s;
-                    }
-
-                    .circle {
-                        transform: rotate(302deg);
-                        stroke-dashoffset: 40;
-                        transition: transform .4s ease .2s, stroke-dashoffset .4s ease .2s;
-                    }
-                }
-            }
+        100% {
+            transform: translateY(0px);
         }
     }
+
+    @keyframes clickAnimation {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(.9);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
 }
-
-@keyframes lineAnimation {
-    0% {
-        transform: translateY(0);
-    }
-
-    10% {
-        transform: translateY(10px);
-    }
-
-    40% {
-        transform: translateY(-25px);
-    }
-
-    60% {
-        transform: translateY(-25px);
-    }
-
-    85% {
-        transform: translateY(10px);
-    }
-
-    100% {
-        transform: translateY(0px);
-    }
-}
-
-@keyframes clickAnimation {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(.9);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-// }
 
 // mixing for slider thumb
 @mixin slider-thumb() {
@@ -247,6 +244,12 @@ form {
             left: 50%;
             transform: translate(-50%, -50%);
             background: #000;
+            // isomorphic
+
+            box-shadow: -4px 8px 0px #ffffff,
+                8px 4px 12px 0px #d1d9e6,
+                4px 4px 4px 0px #d1d9e6 inset,
+                -4px -4px 4px 0px #ffffff inset;
         }
 
         input,
@@ -276,6 +279,11 @@ form {
                 white-space: nowrap;
                 opacity: 0.85;
                 transition: all 0.15s ease-in-out;
+
+                // neuomorphic
+                color: #9f9292;
+                font-family: sans-serif;
+                text-shadow: 1px 1px 16px rgb(0 0 0 / 26%), 4px -6px 20px rgb(255 255 255 / 80%);
             }
 
             &::after {
@@ -286,7 +294,7 @@ form {
                 transform: translate(-50%, -50%);
                 width: 30px;
                 height: 30px;
-                border: 2px solid #000;
+                // border: 2px solid #000;
                 background: #fff;
                 border-radius: 50%;
                 pointer-events: none;
@@ -294,6 +302,12 @@ form {
                 z-index: 1;
                 cursor: pointer;
                 transition: all 0.15s ease-in-out;
+
+                // isomorphic
+                box-shadow: -2px 0px 0px #ffffff,
+                    8px 4px 12px 0px #d1d9e6,
+                    2px 4px 4px 0px #d1d9e6 inset,
+                    -6px -8px 7px 0px #ffffff inset;
             }
 
             &:hover::after {
@@ -308,6 +322,9 @@ form {
                 +label::before {
                     font-weight: 800;
                     opacity: 1;
+
+                    // green
+                    color: #9FD6AE;
                 }
 
                 +label::after {
@@ -322,6 +339,12 @@ form {
                 @for $i from 1 through $number-of-options {
                     &:nth-child(#{$i * 2 - 1})~#strength-amount-pos {
                         left: #{($i * 33.33%) - 16.65%};
+
+                        // green
+                        background: #9FD6AE;
+                        box-shadow: -8px -4px 8px 0px #ffffff, 8px 4px 12px 0px #d1d9e6;
+                        width: 17px;
+                        height: 17px;
                     }
                 }
             }
@@ -340,6 +363,14 @@ form {
             border: 2px solid #fff;
             opacity: 0;
             z-index: 2;
+
+            // neuomorphic
+            box-shadow: -8px -4px 8px 0px #0000, 8px 4px 12px 0px #dad4d0;
+            background: #9ca0a2;
+            border-radius: 15px;
+            width: 20px;
+            height: 20px;
+
         }
     }
 
