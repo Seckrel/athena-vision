@@ -31,10 +31,19 @@ $strength-slider-height: 8px;
 }
 
 .power-btn-container {
-    background: black;
+    padding: 4rem;
+    border-radius: 50%;
+
+    /* background: #534e79; */
+    box-shadow: -8px -6px 7px 0px #ffffff, 3px 7px 8px 0px #d1d9e6, 0px -1px 5px 0px #d1d9e6 inset, -8px -7px 12px 0px #ffffff inset;
+
+    &:has(> .power-switch > input:checked) {
+        box-shadow: 9px 12px 7px 0px #ffffff, 2px 1px 5px 0px #d1d9e6, 1px 0px 5px 0px #d1d9e6 inset, -8px -7px 12px 0px #ffffff inset;
+        transition: box-shadow 1.2s ease;
+    }
 
     .power-switch {
-        $color-invert: #ffffff;
+        $color-invert: #9FD6AE;
         $width: 150px;
         $height: 150px;
         position: relative;
@@ -91,7 +100,7 @@ $strength-slider-height: 8px;
             }
 
             .power-on {
-                filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, .8));
+                filter: drop-shadow(0px 0px 6px rgba(51, 188, 51, 0.8));
 
                 .line {
                     opacity: 0;

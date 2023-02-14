@@ -36,7 +36,7 @@ export function HomeView(props: HomeViewProps) {
               </svg>
               <svg className={styles['power-on']}>
                 <use xlinkHref="#line" className={styles['line']} />
-                <use xlinkHref="#circle" className={styles['line']} />
+                <use xlinkHref="#circle" className={styles['circle']} />
               </svg>
             </div>
           </div>
