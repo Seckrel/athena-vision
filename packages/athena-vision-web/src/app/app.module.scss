@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:ital@1&family=Luckiest+Guy&family=Playfair+Display:ital@1&display=swap');
+
 @mixin box-shadow($shadow...) {
     -webkit-box-shadow: $shadow;
     -moz-box-shadow: $shadow;
@@ -36,11 +38,37 @@
         24: (0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12)),
     );
 
+    .neumorphic-box-shadow-btn-unpressed {
+        box-shadow: -8px -6px 7px 0px #ffffff,
+            3px 7px 8px 0px #d1d9e6,
+            0px -1px 5px 0px #d1d9e6 inset,
+            -8px -7px 12px 0px #ffffff inset;
+    }
+
+    .neumorphic-box-shadow-btn-pressed {
+        box-shadow: 12px 7px 0px #ffffff,
+            2px 1px 5px 0px #d1d9e6,
+            1px 0px 5px 0px #d1d9e6 inset,
+            -8px -7px 12px 0px #ffffff inset;
+    }
+
+    .on-green-color-text {
+        color: #9FD6AE;
+    }
+
+    .on-green-color-bg {
+        color: #9FD6AE;
+    }
+
     * {
         font-size: 14px;
         padding: 0;
         margin: 0;
         box-sizing: border-box;
+    }
+
+    .playfair-font {
+        font-family: 'Playfair Display', serif;
     }
 
     .Typography-1 {

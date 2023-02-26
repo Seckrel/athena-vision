@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@athena-vision/shared/const-values": [
+        "libs/shared/const-values/src/index.ts"
+      ],
       "@athena-vision/shared/typedefs": ["libs/shared/typedefs/src/index.ts"],
       "@athena-vision/shared/ui": ["libs/shared/ui/src/index.ts"]
     },

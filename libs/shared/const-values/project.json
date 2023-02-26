@@ -1,14 +1,14 @@
 {
-  "name": "shared-typedefs",
+  "name": "shared-const-values",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/typedefs/src",
+  "sourceRoot": "libs/shared/const-values/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/shared/typedefs/**/*.ts"]
+        "lintFilePatterns": ["libs/shared/const-values/**/*.ts"]
       }
     }
   },

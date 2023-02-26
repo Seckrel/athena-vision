@@ -5,7 +5,7 @@
   "scripts": {
     "django": "python3.10 ./py-libs/django_command.py",
     "pipenv": "python3.10 ./py-libs/pipenv_create.py",
-    "postinstall": "if [ ! -d node_modules ]; then python3.10 ./py-libs/setup.py; fi"
+    "postinstall": "python3.10 ./py-libs/setup.py"
   },
   "private": true,
   "dependencies": {
@@ -18,13 +18,14 @@
     "@babel/preset-react": "^7.14.5",
     "@nrwl/cypress": "15.6.3",
     "@nrwl/eslint-plugin-nx": "15.6.3",
+    "@nrwl/jest": "^15.7.0",
     "@nrwl/js": "15.6.3",
-    "@nrwl/linter": "15.6.3",
+    "@nrwl/linter": "^15.7.0",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/nx-plugin": "^15.6.3",
     "@nrwl/react": "^15.6.3",
     "@nrwl/vite": "15.6.3",
-    "@nrwl/workspace": "15.6.3",
+    "@nrwl/workspace": "^15.7.0",
     "@testing-library/react": "13.4.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
