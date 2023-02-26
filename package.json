@@ -5,11 +5,12 @@
   "scripts": {
     "django": "python3.10 ./py-libs/django_command.py",
     "pipenv": "python3.10 ./py-libs/pipenv_create.py",
-    "postinstall": "python3.10 ./py-libs/setup.py"
+    "postinstall": "NODE_ENV=production python3.10 ./py-libs/setup.py"
   },
   "private": true,
   "dependencies": {
     "clsx": "^1.2.1",
+    "loadash": "^1.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "tslib": "^2.3.0"
