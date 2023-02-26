@@ -109,12 +109,22 @@ def choose_py_dir(argv) -> str:
     return py_dir
 
 
+def write_cmd(args):
+    try:
+        command: str = "pipenv run python manage.py "
+        command += " ".join(args[1:])
+        return command
+    except DjangoStartAppException:
+        print_red_error("Insturction error")
+
+
 def main():
     # path to directory where command needs to be executed
     exec_dir = choose_py_dir(sys.argv)
 
     # command to be executed
-    command = decision_tree(sys.argv)
+    # command = decision_tree(sys.argv)
+    command = write_cmd(sys.argv)
     exec_instruction(command, exec_dir)
 
 
