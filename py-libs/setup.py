@@ -8,18 +8,27 @@ def ask_whether_to_install() -> bool:
     '''
     Ask users wether to install pip packages or not
     '''
-    ask_var: str = input('Do you want to install python packages(y/N): ')
-    if (ask_var.lower() == 'y'):
-        return True
-    return False
+    screen = curses.initscr()
+    curses.noecho()
+    curses.cbreak()
+    screen.keypad(True)
+
+    screen.addstr('Do you want to install python packages(y/N): ')
+    while True:
+        char = screen.getch()
+        print(type(char))
+        if char in [ord('y'), ord('Y')]:
+            return True
+        else:
+            return False
 
 
 def main():
     setup_flag = ask_whether_to_install()
 
     if not setup_flag:
-        print_blue_info('''If you want to install in future
-        `yarn pipenv install`''')
+        print_blue_info(
+            "\t\tIf you want to install in future\n\t\t`yarn pipenv install`")
         return
 
     os.chdir(find_pipfile())
