@@ -8,66 +8,6 @@ class DjangoStartAppException(Exception):
     pass
 
 
-def decision_tree(argv) -> str:
-    '''
-        Choose proper command based on intruction and furthure paramater provided
-        @params
-            argv: sys.argv list
-        @returns
-            command in string datatype to be executed
-    '''
-
-    try:
-        instruction: str = argv[1].lower()  # lower casing entire instruction
-        command: str = "pipenv run python manage.py "
-
-        single_parameter_instruction: bool = instruction == "runserver" or instruction == "makemigrations" or instruction == "migrate" or instruction == "collectstatic"
-
-        if single_parameter_instruction:
-            command += instruction
-
-        elif instruction == "startapp":
-            app_name: str = argv[2]
-
-            # Throwing error if app name is not provided
-            if app_name is None or app_name == "":
-                raise DjangoStartAppException(
-                    "manage.py startapp missing app name")
-
-            command += f"{instruction} {app_name}"
-
-        elif instruction == "startproject":
-            project_name: str = argv[2]
-            command = f"pipenv run django-admin startproject {project_name}"
-
-            if project_name is None or project_name == "":
-                raise DjangoStartAppException(
-                    "django-admin startproject requires a proper name"
-                )
-
-    except IndexError:
-        print_red_error(
-            "Either no instruction provided with manage.py or no app name given for startapp instruction")
-        print_blue_info(
-            "Try using startapp <app-name>, makemigrations, runserver...")
-
-        sys.exit(1)
-
-    except DjangoStartAppException as e:
-        print_red_error(e)
-
-        print_blue_info(
-            '''To start new app:
-            yarn startapp my-app
-
-            To start new project:
-            yarn startproject mysite'''
-        )
-        sys.exit(1)
-
-    return command
-
-
 def exec_instruction(command: str, exec_dir) -> None:
     '''
         Executes command 
