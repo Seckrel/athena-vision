@@ -102,22 +102,23 @@ SOCIALACCOUNT_PROVIDERS = {
             'request_token_url': 'https://api.twitter.com/oauth/request_token',
             'access_token_url': 'https://api.twitter.com/oauth/access_token',
             'authorize_url': 'https://api.twitter.com/oauth/authorize',
-            'callback_url': 'http://localhost:8000/login/twitter/redirect',
+            'callback_url': getenv("T_CALLBACK_URL"),
             "scope": ["read"]
         }
     }
 }
 
 # TwitterLogin_app/settings.py
+LOGIN_URL = '/login/twitter_login/'
 
-AUTHENTICATION_BACKENDS = (
-    "allauth.account.auth_backends.AuthenticationBackend",
-)
+# AUTHENTICATION_BACKENDS = (
+#     "allauth.account.auth_backends.AuthenticationBackend",
+# )
 
-SITE_ID = 1
-ACCOUNT_EMAIL_VERIFICATION = "none"
-LOGIN_REDIRECT_URL = "redirect"
-ACCOUNT_LOGOUT_ON_GET = True
+# SITE_ID = 1
+# ACCOUNT_EMAIL_VERIFICATION = "none"
+# LOGIN_REDIRECT_URL = "redirect"
+# ACCOUNT_LOGOUT_ON_GET = True
 
 
 # Password validation

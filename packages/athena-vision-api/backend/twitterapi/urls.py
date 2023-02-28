@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import TwitterLoginView, TwitterRedirectView
+from .views import *
 
 urlpatterns = [
-    path('twitter/', TwitterLoginView.as_view(), name="login"),
-    path('twitter/redirect', TwitterRedirectView.as_view(), name="redirect")
+    path('', index, name='index'),
+    path('twitter_login/', twitter_login, name='twitter_login'),
+    path('twitter_callback/', twitter_callback, name='twitter_callback'),
+    path('twitter_logout/', twitter_logout, name='twitter_logout'),
 ]
