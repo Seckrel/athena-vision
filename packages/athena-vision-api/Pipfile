@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 django = "*"
 requests = "*"
+djangorestframework = "*"
+python-dotenv = "*"
+tweepy = "*"
 
 [dev-packages]
 autopep8 = "*"

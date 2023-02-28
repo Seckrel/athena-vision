@@ -10,7 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+from os import getenv
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -36,7 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.twitter',
+
+    'twitterapi'
 ]
 
 MIDDLEWARE = [
@@ -79,6 +90,34 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# Configure the authentication providers
+SOCIALACCOUNT_PROVIDERS = {
+    'twitter': {
+        'APP': {
+            'consumer_key': getenv("T_API_KEY"),
+            'consumer_secret': getenv("T_API_KEY_SECRET"),
+            'access_token_method': 'POST',
+            'request_token_url': 'https://api.twitter.com/oauth/request_token',
+            'access_token_url': 'https://api.twitter.com/oauth/access_token',
+            'authorize_url': 'https://api.twitter.com/oauth/authorize',
+            'callback_url': 'http://localhost:8000/login/twitter/redirect',
+            "scope": ["read"]
+        }
+    }
+}
+
+# TwitterLogin_app/settings.py
+
+AUTHENTICATION_BACKENDS = (
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = "none"
+LOGIN_REDIRECT_URL = "redirect"
+ACCOUNT_LOGOUT_ON_GET = True
 
 
 # Password validation
