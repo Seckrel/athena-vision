@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="{% static 'twitterstream/MDB5/css/mdb.min.css' %}" />
+
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    };
+  </script>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'twitterstream/style.css' %}" />
+
+  <title>Live Tweet</title>
+</head>
+
+<body class="dark:bg-slate-700">
+  <header class="dark:bg-gray-800 bg-blue-500 px-4 py-3 mb-5 h-30">
+    <div class="d-flex justify-between px-4 items-start h-full">
+      <h1 class="text-white text-6xl font-bold">xyz</h1>
+      <div class='toggle-switch'>
+        <label>
+          <input type='checkbox' id="theme-toggle" onclick="handleToggleTheme();">
+          <span class='slider'></span>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="loading">
+      {% for _ in skeletonNumbers %}
+      <div class="flex justify-center skeleton mb-3">
+        <div class="flex justify-center w-4/5 h-60">
+          <div class="w-1/2 dark:bg-gray-900 bg-[#ffff] p-8 rounded-lg shadow-md">
+            <div class="animate-pulse">
+              <div class="my-4 flex justify-between items-baseline">
+                <div class="h-20 bg-gray-400 dark:bg-gray-600 rounded-full w-20"></div>
+                <div class="h-4 bg-gray-400 dark:bg-gray-600 rounded w-4/5 relative -left-14"></div>
+              </div>
+              <div class="h-4 bg-gray-400 dark:bg-gray-600 rounded"></div>
+              <div class="my-2 h-4 bg-gray-400 dark:bg-gray-600 rounded"></div>
+              <div class="h-4 bg-gray-400 dark:bg-gray-600 rounded"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div id="tweets" class="d-none">
+      <div class="flex justify-center mb-3 twitter-view">
+        <div class="flex justify-center w-4/5 h-60">
+          <div class="dark:bg-gray-800 bg-gray-50 rounded-lg shadow-md p-4 flex flex-col space-y-4">
+            <div class="flex flex-row space-x-2 items-center">
+              <img class="w-30 h-30 rounded-full twitter-img" src="https://picsum.photos/50" />
+              <div class="flex flex-col">
+                <span class="dark:text-gray-50 font-bold text-xl twitter-username">John Doe</span>
+                <span class="text-lg dark:text-gray-400 text-gray-500 twitter-handle">@johndoe</span>
+              </div>
+            </div>
+            <div class="text-md dark:text-gray-50  max-w-3xl w-[48rem] twitter-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              accumsan nulla quis tortor tincidunt consectetur. Morbi sit amet
+              quam pellentesque, tincidunt purus a, bibendum sapien. Nullam in
+              nibh quis tortor mattis eleifend eget ac turpis.
+            </div>
+            <div class="flex flex-row space-x-4">
+              <div class="flex flex-row space-x-1 items-center">
+                <i class="far fa-comment"></i>
+                <span class="text-xs text-gray-500">4</span>
+              </div>
+              <div class="flex flex-row space-x-1 items-center">
+                <i class="fas fa-retweet"></i>
+                <span class="text-xs text-gray-500">15</span>
+              </div>
+              <div class="flex flex-row space-x-1 items-center">
+                <i class="far fa-heart"></i>
+                <span class="text-xs text-gray-500">32</span>
+              </div>
+              <div class="flex flex-row space-x-1 items-center">
+                <i class="fas fa-share"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="loadmore" class="d-none">
+      <div id="preloader">
+        <div id="loader"></div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="{% static 'twitterstream/MDB5/js/mdb.min.js' %}"></script>
+
+  <script type="text/javascript">
+    function handleToggleTheme() {
+      const checked = document.getElementById("theme-toggle").checked;
+      const html = document.getElementsByTagName("html")[0];
+
+      if (checked) {
+        html.classList.remove("dark");
+      } else {
+        html.classList.add("dark");
+      }
+    }
+  </script>
+
+  <script type="text/javascript">
+    function createState(initialState) {
+      let state = initialState;
+      let listeners = [];
+
+      function setState(newState) {
+        state = newState;
+        listeners.forEach((listener) => listener(state));
+      }
+
+      return { getState: () => state, setState };
+    }
+
+    function generateTweetDiv(
+      _username,
+      _handle,
+      _tweet,
+      initial = false,
+      src = 'https://picsum.photos/50'
+    ) {
+      const tweetsDiv = document.getElementById('tweets');
+
+      const twiterBoxOriginal = tweetsDiv.querySelector('.twitter-view');
+      const twitterBox = initial
+        ? twiterBoxOriginal
+        : twiterBoxOriginal.cloneNode(true);
+
+      const username = twitterBox.querySelector('.twitter-username');
+      const handle = twitterBox.querySelector('.twitter-handle');
+      const tweetText = twitterBox.querySelector('.twitter-text');
+      const userProfileSrc = twitterBox.querySelector('.twitter-img');
+
+      username.textContent = _username;
+      handle.textContent = _handle;
+      tweetText.textContent = _tweet;
+      userProfileSrc.src = src;
+
+      tweetsDiv.appendChild(twitterBox);
+      tweetsDiv.classList.remove('d-none');
+    }
+
+    function setLoadingDisplay(displayVal) {
+      const loadingDiv = document.getElementById('loading');
+      const loadmoreDiv = document.getElementById("loadmore");
+      const containerDiv = document.querySelector(".container");
+
+      if (loadingDiv === null || loadingDiv === undefined) return;
+
+      loadmoreDiv.classList.remove("d-none");
+      loadingDiv.style.display = displayVal;
+
+      loadingDiv.remove();
+    }
+
+    let url = `ws://${window.location.host}/ws/socket-server/`;
+
+    const state = createState([]);
+    const loadMoreState = createState(false);
+
+    const chatSocket = new WebSocket(url);
+
+    chatSocket.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      state.setState(data['data']);
+
+      if (state.getState().length > 0) {
+        setLoadingDisplay('none');
+      }
+
+      for (let idx = 0; idx < state.getState().length; idx++) {
+        const tweetInfo = state.getState()[idx];
+
+        const tweetText = tweetInfo.text;
+        const username = tweetInfo.author_name;
+        const handle = `@${username}`;
+        const initial = idx === 0 ? true : false;
+
+        generateTweetDiv(username, handle, tweetText, initial);
+      }
+      loadMoreState.setState(false);
+      state.setState([]);
+    };
+
+    window.addEventListener('scroll', () => {
+      if (window.innerHeight + Math.ceil(window.pageYOffset) >= document.body.offsetHeight) {
+        if (!loadMoreState.getState()) {
+          loadMoreState.setState(true)
+
+          chatSocket.send(JSON.stringify({
+            signal: "more"
+          }))
+
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
