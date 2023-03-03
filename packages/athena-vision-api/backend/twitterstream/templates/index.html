@@ -179,7 +179,7 @@
     chatSocket.onmessage = (e) => {
       const data = JSON.parse(e.data);
       state.setState(data['data']);
-
+      console.log(state.getState());
       if (state.getState().length > 0) {
         setLoadingDisplay('none');
       }

@@ -11,7 +11,7 @@ from sklearn.pipeline import Pipeline
 class Prediction:
     def __init__(self) -> None:
         self.model, self.word_vectors = apps.get_app_config(
-            "twitterstream").scope
+            "twitterstream").scope.values()
 
         self.stemmer = PorterStemmer()
         self.stop_words = set(stopwords.words("english"))
@@ -83,8 +83,8 @@ class Prediction:
         return tweet
 
     def __text_preprocessing(self, tweets):
-        tweets = tweets.apply(lambda tweet: [wv[token]
-                                             for token in tweet.split() if token in wv])
+        tweets = tweets.apply(lambda tweet: [self.word_vectors[token]
+                                             for token in tweet.split() if token in self.word_vectors])
         return tweets
 
     def __remove_empty_vectors(self, X, production_mode=True, y=None):

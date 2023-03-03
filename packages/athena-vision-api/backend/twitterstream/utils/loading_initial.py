@@ -28,6 +28,7 @@ def loading_model():
     with open(path_to_model, 'rb') as f:
         svc_model = joblib.load(f)
 
+    print(type(svc_model))
     print("\nModel Loaded\n")
 
     return svc_model
