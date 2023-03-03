@@ -2,6 +2,7 @@ import tweepy
 import time
 import json
 from queue import Queue
+from django.apps import apps
 
 
 class TweetStream(tweepy.StreamingClient):

@@ -11,6 +11,10 @@ python-dotenv = "*"
 tweepy = "*"
 social-auth-app-django = "*"
 channels = "~=3.0.5"
+scikit-learn = "~=1.0.2"
+nltk = "~=3.7"
+dill = "*"
+gensim = "*"
 
 [dev-packages]
 autopep8 = "*"

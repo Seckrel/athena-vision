@@ -20,14 +20,17 @@
 </head>
 
 <body class="dark:bg-slate-700">
+
   <header class="dark:bg-gray-800 bg-blue-500 px-4 py-3 mb-5 h-30">
-    <div class="d-flex justify-between px-4 items-start h-full">
-      <h1 class="text-white text-6xl font-bold">xyz</h1>
-      <div class='toggle-switch'>
-        <label>
-          <input type='checkbox' id="theme-toggle" onclick="handleToggleTheme();">
-          <span class='slider'></span>
-        </label>
+    <div class="flex justify-between px-4 items-start h-full">
+      <span class="text-white text-6xl font-bold">xyz</span>
+      <div>
+        <div class='toggle-switch'>
+          <label>
+            <input type='checkbox' id="theme-toggle" onclick="handleToggleTheme();">
+            <span class='slider'></span>
+          </label>
+        </div>
       </div>
     </div>
   </header>
@@ -52,7 +55,7 @@
       </div>
       {% endfor %}
     </div>
-    <div id="tweets" class="d-none">
+    <div id="tweets" class="hidden">
       <div class="flex justify-center mb-3 twitter-view">
         <div class="flex justify-center w-4/5 h-60">
           <div class="dark:bg-gray-800 bg-gray-50 rounded-lg shadow-md p-4 flex flex-col space-y-4">
@@ -90,7 +93,7 @@
         </div>
       </div>
     </div>
-    <div id="loadmore" class="d-none">
+    <div id="loadmore" class="hidden">
       <div id="preloader">
         <div id="loader"></div>
       </div>
@@ -148,7 +151,9 @@
       userProfileSrc.src = src;
 
       tweetsDiv.appendChild(twitterBox);
-      tweetsDiv.classList.remove('d-none');
+      tweetsDiv.classList.remove('hidden');
+
+      document.getElementById("loadmore").classList.remove('hidden')
     }
 
     function setLoadingDisplay(displayVal) {

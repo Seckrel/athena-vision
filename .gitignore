@@ -300,4 +300,8 @@ poetry.toml
 # ruff
 .ruff_cache/
 
+# ignore word2vec and model.pkl
+packages/athena-vision-api/backend/twitterstream/static/models/model.pkl
+packages/athena-vision-api/backend/twitterstream/static/models/word2vec.bin
+
 # End of https://www.toptal.com/developers/gitignore/api/python,django
