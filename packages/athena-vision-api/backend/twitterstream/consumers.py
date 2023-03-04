@@ -15,6 +15,7 @@ class TweetStreamConsumer(WebsocketConsumer):
         data = json.loads(text_data)
         if data["signal"].lower() == "more":
             self.__getStream()
+            self.__makePrediction()
 
     def disconnet(self, close_code):
         pass
@@ -28,11 +29,7 @@ class TweetStreamConsumer(WebsocketConsumer):
         print("--------->Samping")
         stream.sample(expansions=["author_id"], tweet_fields=[
             "entities", "lang"])
-
-        # self.send(text_data=json.dumps({
-        #     "type": "json",
-        #     "data": self.tweet_data
-        # }))
+        print("-------->Sampled")
 
     def __makePrediction(self):
         model = Prediction()
@@ -41,6 +38,8 @@ class TweetStreamConsumer(WebsocketConsumer):
         for idx, tweet in enumerate(self.tweet_data):
             hate_flag = model.predict_hate(tweet["text"])
             self.tweet_data[idx]["hate_flag"] = str(hate_flag[0])
+
+        print("="*4, ">Predicting<", "="*4)
 
         self.send(text_data=json.dumps({
             "type": "json",
