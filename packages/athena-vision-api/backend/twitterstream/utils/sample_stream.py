@@ -10,7 +10,7 @@ class TweetStream(tweepy.StreamingClient):
         super().__init__(bearer_token)
         self.tweet_data = tweet_data
         self.support_lang = ['en', 'ne']
-        self.buffer_size = 10
+        self.buffer_size = 20
         self.pumping = True
         self.delay = 0.2
 
