@@ -58,19 +58,20 @@
     <div id="tweets" class="hidden">
       <div class="flex justify-center mb-3 twitter-view">
         <div class="flex justify-center w-4/5 h-60 relative isolate z-index-5">
-          <div class="dark:bg-gray-800 bg-gray-50 rounded-lg shadow-md p-4 flex flex-col space-y-4 to-blur"
+          <div
+            class="dark:bg-gray-800 bg-gray-50 rounded-lg shadow-md p-4 flex flex-col cursor-pointer space-y-4 to-blur"
             onclick="removeBlur(this);">
             <div class="flex flex-row space-x-2 items-center">
-              <img class="w-30 h-30 rounded-full twitter-img" src="https://picsum.photos/50" />
+              <img class="w-30 h-30 rounded-full twitter-img" alt="Person image" />
               <div class="flex flex-col">
                 <span class="dark:text-gray-50 font-bold text-xl twitter-username">John Doe</span>
                 <span class="text-lg dark:text-gray-400 text-gray-500 twitter-handle">@johndoe</span>
                 <div class="flex flex-row justify-between">
                   <div
-                    class="bg-purple-300 text-base uppercase font-extrabold dark:shadow-gray-600 shadow-sm dark:text-gray-800 text-gray-50 w-[80px] h-[25px] flex justify-center items-center rounded-lg  p-2 mr-3 twitter-sentiment">
+                    class="bg-purple-300 text-base uppercase font-extrabold dark:shadow-gray-600 shadow-sm dark:text-gray-800 text-gray-50 w-[80px] h-[25px] flex justify-center items-center rounded-lg  p-2 mr-3 hidden twitter-sentiment">
                     sentiment</div>
-                  <div
-                    class="bg-purple-300 text-base capitalize font-extrabold dark:shadow-gray-600 shadow dark:text-gray-800 text-gray-50 min-w-[80px] h-[25px] flex justify-center items-center rounded-lg  p-2 twitter-topic">
+                  <div style="background-image: linear-gradient(to bottom right, #808080, #FFFFFF) !important;"
+                    class="bg-purple-300 text-base capitalize font-extrabold dark:shadow-gray-600 shadow-gray-900 shadow dark:text-gray-800 text-gray-50 min-w-[80px] h-[25px] flex justify-center items-center rounded-lg  p-2 hidden twitter-topic">
                     topic</div>
                 </div>
               </div>
@@ -127,9 +128,9 @@
 
   <script type="text/javascript">
     function removeBlur(e) {
-      e.classList.remove("blur");
+      e.classList.toggle("blur");
       const visible = e.nextElementSibling
-      visible.classList.add("hidden")
+      visible.classList.toggle("hidden")
     }
   </script>
 
@@ -167,7 +168,8 @@
       topic,
       sentiment,
       initial = false,
-      src = 'https://picsum.photos/50'
+      idx,
+      src = 'https://source.unsplash.com/random/50x50/?person'
     ) {
       const tweetsDiv = document.getElementById('tweets');
 
@@ -180,21 +182,29 @@
       const handle = twitterBox.querySelector('.twitter-handle');
       const tweetText = twitterBox.querySelector('.twitter-text');
       const userProfileSrc = twitterBox.querySelector('.twitter-img');
-      const twitterSentiment = twitterBox.querySelector(".twitter-sentiment");
-      const twitterTopic = twitterBox.querySelector(".twitter-topic")
       const toBlur = twitterBox.querySelector(".to-blur");
 
       username.textContent = _username;
       handle.textContent = _handle;
       tweetText.textContent = _tweet;
-      userProfileSrc.src = src;
-      twitterSentiment.textContent = sentiment;
-      twitterTopic.textContent = topic;
+      userProfileSrc.src = `${src}&${idx}`;
+
+
+      if (topic.length !== 0) {
+        const twitterTopic = twitterBox.querySelector(".twitter-topic")
+        twitterTopic.classList.remove("hidden");
+        twitterTopic.textContent = topic;
+      }
+
+      if (sentiment.length !== 0) {
+        const twitterSentiment = twitterBox.querySelector(".twitter-sentiment");
+        twitterSentiment.classList.remove("hidden");
+        twitterSentiment.textContent = sentiment;
+      }
 
 
       const visible = twitterBox.querySelector(".visibility-svg");
 
-      console.log(hateFlag)
       if (hateFlag === "1") {
         toBlur.classList.add("blur");
         visible.classList.remove("hidden");
@@ -238,6 +248,7 @@
         setLoadingDisplay('none');
       }
 
+
       for (let idx = 0; idx < state.getState().length; idx++) {
         const tweetInfo = state.getState()[idx];
 
@@ -249,7 +260,7 @@
         const sentiment = tweetInfo.sentiment
         const initial = idx === 0 ? true : false;
 
-        generateTweetDiv(username, handle, tweetText, hateflag, topic, sentiment, initial);
+        generateTweetDiv(username, handle, tweetText, hateflag, topic, sentiment, initial, idx);
       }
       loadMoreState.setState(false);
       state.setState([]);

@@ -2,7 +2,8 @@ import tweepy
 import time
 import json
 from queue import Queue
-from django.apps import apps
+# from django.apps import apps
+
 
 
 class TweetStream(tweepy.StreamingClient):
@@ -10,7 +11,7 @@ class TweetStream(tweepy.StreamingClient):
         super().__init__(bearer_token)
         self.tweet_data = tweet_data
         self.support_lang = ['en', 'ne']
-        self.buffer_size = 20
+        self.buffer_size = 7
         self.pumping = True
         self.delay = 0.2
 

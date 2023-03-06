@@ -28,7 +28,7 @@ class Prediction:
             ("preprocessing", production_pipeline),
             ("svm_model", self.model)
         ])
-        return full_pipeline.predict(tweet_text)
+        return full_pipeline.predict(tweet_text)[0]
 
 # Private methods:
 

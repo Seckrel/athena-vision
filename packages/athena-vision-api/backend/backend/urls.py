@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('twitterstream.urls'), name="twitterstream")
+    path('', include('twitterstream.urls'), name="twitterstream"),
+    path("athena/", include('athenaExt.urls'), name="athenaExt")
 ]
