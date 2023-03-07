@@ -6,10 +6,15 @@ class TwitterstreamConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'twitterstream'
 
+    called_already = False
+
     def ready(self) -> None:
 
         # muted during debugging
-        self.scope = loading_model_and_vector()
-        print("-------->ready<--------")
-        
+        if not self.called_already:
+            self.scope = loading_model_and_vector()
+            self.called_already = True
+
+        print("-------->READY<--------")
+
         return super().ready()

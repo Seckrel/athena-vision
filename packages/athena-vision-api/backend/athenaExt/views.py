@@ -6,8 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 
-
-method_decorator(csrf_exempt, name="updateSetting")
+# method_decorator(csrf_exempt, name="updateSetting")
 class UpdateSetting(APIView):
     def get(self, request):
         data = {
@@ -39,8 +38,8 @@ class UpdateSetting(APIView):
         request.session["strength"] = data["strength"]
         cache.set('session', request.session)
 
-#
-method_decorator(csrf_exempt, name="extPowerSetting")
+
+# method_decorator(csrf_exempt, name="extPowerSetting")
 class ExtPowerSetting(APIView):
     def post(self, request):
         extFlag = request.data

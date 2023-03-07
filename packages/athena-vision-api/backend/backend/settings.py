@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vl2_dpo%d@f7n7ip5)ip39(e^s9b+n$u5#r2mkmo(lyhn++$nz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -67,7 +67,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 #     'chrome-extension://dbijbcgmceacmfdmlknofpdeideabogl',
 #     "http://localhost:4200"
 # ]
-# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = True
 
 # CORS_ORIGIN_WHITELIST = [
 #     "chrome-extension://dbijbcgmceacmfdmlknofpdeideabogl"
