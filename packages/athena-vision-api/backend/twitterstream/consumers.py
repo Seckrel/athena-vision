@@ -16,35 +16,7 @@ class TweetStreamConsumer(WebsocketConsumer):
         self.__getStream()
         self.__makePrediction()
 
-        # Unmute above doing lunch
-
-        # self.send(text_data=json.dumps({
-        #     "type": "json",
-        #     "data": [{
-        #         "text": "fadhfkdajfkjdafjdafjdka djadgjakngkldjgo ajklgjaklgjdaljg",
-        #         "author_name": "hello1",
-        #         "hate_flag": 1,
-        #         "topic": "Something",
-        #         "sentiment": "Pos",
-        #     }, {
-        #         "text": "lkgaiejoadgwjgsd gjsdkgjawgo dhgoia",
-        #         "author_name": "hello2",
-        #         "hate_flag": 1,
-        #         "topic": "Something",
-        #         "sentiment": "NEU",
-        #     }, {
-        #         "text": "fjal djfld a d ",
-        #         "author_name": "hello3",
-        #         "hate_flag": 0,
-        #         "topic": "Something",
-        #         "sentiment": "neg",
-        #     }],
-        #     "context": {
-        #         "blur": blur,
-        #         "topic": topic,
-        #         "emotion_tone": emotion_tone
-        #     }
-        # }))
+        
 
     def receive(self, text_data):
         data = json.loads(text_data)
