@@ -1,4 +1,4 @@
-# Athena-Vision
+# Athena-Vision 👁️
 
 ## Table of Content
 - [Introduction](#Introduction)
