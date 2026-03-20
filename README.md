@@ -19,7 +19,7 @@ Monorepo created using nx tool.
 		|- athena-vision-api -- django backend
 	|- py-libs -- custom library run django and pipenv from root dir
 
-Rest of the structure is basic nx integrated repo structure (Learn more [here](https://nx.dev/getting-started/integrated-repo-tutorial)
+Rest of the structure is basic nx integrated repo structure (Learn more [here](https://nx.dev/getting-started/integrated-repo-tutorial))
 # How to Run
 
 ## Requirements
